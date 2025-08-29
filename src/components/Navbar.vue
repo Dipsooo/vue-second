@@ -4,7 +4,7 @@
     <router-link to="/products" class="hover:underline">Products</router-link>
     <router-link to="/users" class="hover:underline">Users</router-link>
     <router-link to="/cart" class="hover:underline">Cart</router-link>
-    <router-link to="/login" class="element">Log in</router-link>
+    <router-link to="/login" class="hover:underline">Log in</router-link>
   </div>
 </template>
 
@@ -23,17 +23,22 @@
     }
 
     .navbar a {
-      color: rgba(191, 44, 44, 0.817);
+      color: rgba(51, 79, 87, 0.817);
       text-decoration: none;
       padding: 8px 16px;
       transition: background 0.3s;
     }
 
     .navbar a:hover {
-      background-color: #626979;
+     text-shadow: 1px 2px 2px rgba(8, 48, 245, 0.5);
     }
-.element:hover {
-  box-shadow: 0 0 20px 5px rgba(52, 152, 219, 0.7);
-  transform: scale(1.05);
-}
+    /* .element {
+      color: rgba(191, 44, 44, 0.817);
+      text-decoration: none;
+      padding: 8px 16px;
+      transition: background 0.3s;
+    }
+    .element:hover {
+      text-shadow: inset 0 0 15px rgba(255, 255, 255, 0.6);
+    } */
 </style>
