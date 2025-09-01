@@ -1,27 +1,52 @@
-<script setup lang="ts">
-import { useRoute } from "vue-router";
-import { useProductStore } from "@/stores/productStore";
-import { onMounted, computed } from "vue";
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useProductStore } from '../stores/productStore'
 
-const route = useRoute();
-const productStore = useProductStore();
-const productId = Number(route.params.id);
 
-onMounted(() => {
-  if (!productStore.products.length) {
-    productStore.fetchProducts();
-  }
-});
+const route = useRoute()
+const router = useRouter()
+const store = useProductStore()
 
-const product = computed(() => productStore.getProductById(productId));
+
+const id = Number(route.params.id)
+onMounted(() => { store.fetchById(id) })
+
+
+function formatPrice(v: number) {
+return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v)
+}
+
+
+async function remove(){
+const ok = confirm('Delete product?')
+if (!ok) return
+const deleted = await store.deleteProduct(id)
+if (deleted) router.push('/')
+}
 </script>
 
 <template>
-  <div v-if="product" class="p-6">
-    <img :src="product.image" class="h-60 object-contain mb-4" />
-    <h1 class="text-2xl font-bold mb-2">{{ product.title }}</h1>
-    <p class="text-gray-600 mb-4">{{ product.description }}</p>
-    <p class="font-bold text-lg">${{ product.price }}</p>
-  </div>
-  <div v-else>Loading...</div>
+<div class="page">
+<button @click="$router.back()">← Back</button>
+
+
+<section v-if="store.loading">Loading…</section>
+<section v-else-if="!store.selected">Product not found.</section>
+<section v-else class="detail">
+<h2>{{ store.selected.title }}</h2>
+<p class="price">{{ formatPrice(store.selected.price) }}</p>
+<p>{{ store.selected.description }}</p>
+
+
+<div class="actions">
+<router-link :to="`/edit/${store.selected.id}`" class="btn">Edit</router-link>
+<button class="danger" @click="remove">Delete</button>
+</div>
+</section>
+</div>
 </template>
+
+<style scoped>
+.page{ padding:1rem }
+</style>

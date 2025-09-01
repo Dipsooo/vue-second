@@ -1,6 +1,56 @@
+<script lang="ts">
+</script>
+
 <template>
-  <div class="p-6 text-center">
-    <h1 class="text-3xl font-bold">Welcome to FuTech Store</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur exercitationem perferendis aperiam? Asperiores reiciendis natus architecto sunt quam nihil molestias non sapiente, voluptatem blanditiis nesciunt sit aspernatur saepe minus facilis. Consequuntur commodi eum ipsa explicabo optio, in consectetur reiciendis alias quia facilis ut quam nemo dolorum perspiciatis odio molestiae provident tenetur temporibus doloribus necessitatibus blanditiis error quaerat inventore! Quibusdam earum, corporis rem voluptates necessitatibus eveniet veritatis fugiat vitae, saepe facere maiores. Veniam maxime ipsam consequuntur? Eaque asperiores, laboriosam quisquam facilis enim velit molestias alias harum officiis molestiae ex rem explicabo doloremque quos pariatur labore recusandae itaque voluptates tempore soluta eveniet.</p>
+  <h1>Welcome to Our Store</h1>
+    <div class="slideshow">
+      <div class="slide_wrapper">
+      <div class="slide">
+        <img src="../images/tg.jpg"></div>
+      <div class="slide">
+        <img src="../images/yo.jpg"></div>
+        <div class="slide">
+        <img src="../images/bo.jpg"></div>
+        <div class="slide">
+        <img src="../images/my.jpg"></div>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.slide img{
+  width: 1000px;
+  height: 510px;
+  float: left;
+}
+.slideshow{
+  width: 1000px;
+  height: 510px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.slide_wrapper
+{
+  animation: slide 10s ease infinite;
+  width: calc(1000px * 4);
+}
+@keyframes slide
+{
+  20%
+  {
+    margin-left: 0px;
+  }
+  40%
+  {
+    margin-left: calc(-1000px*1);
+  }
+  60%
+  {
+    margin-left: calc(-1000px*2);
+  }
+  80%
+  {
+    margin-left: calc(-1000px*3);
+  }
+}
+</style>

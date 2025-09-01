@@ -23,8 +23,8 @@ const handleLogin = async () => {
   <div class="login-container">
     <h2>Login</h2>
     <form @submit.prevent="handleLogin">
-      <input v-model="username" type="text" placeholder="Username" required />
-      <input v-model="password" type="password" placeholder="Password" required />
+      <input v-model="username" type="text" placeholder="Username" required /><br />
+      <input v-model="password" type="password" placeholder="Password" required /><br/>
       <button type="submit">Login</button>
       <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
     </form>
